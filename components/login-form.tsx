@@ -22,8 +22,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema, type LoginValues } from "../lib/auth"
 import logoImage from "../public/logo.png";
 import loginLogoImage from "../public/loginLogo.png";
+import { useRouter } from "next/navigation"
 export  function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -37,10 +39,11 @@ export  function LoginForm() {
     // Simulate an API call
     console.log(data)
     // Add error state to demonstrate validation
-    form.setError("password", {
-      type: "manual",
-      message: "Wrong Password"
-    })
+    // form.setError("password", {
+    //   type: "manual",
+    //   message: "Wrong Password"
+    // })
+    router.push("/adminDashboard");
   }
 
   return (
