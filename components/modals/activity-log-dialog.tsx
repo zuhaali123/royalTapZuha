@@ -73,11 +73,11 @@ export  function ActivityLogDialog({ open, onOpenChange }: InviteModalProps) {
 
   return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl p-4">
+      <DialogContent className="md:max-w-[999px] p-4">
         <DialogHeader className="p-4 border-b space-y-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full border-gray-200 p-2">
+              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full border-gray-200 p-2"  onClick={() => onOpenChange(false)}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div className="ml-2">

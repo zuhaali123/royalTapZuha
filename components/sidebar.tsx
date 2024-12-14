@@ -111,10 +111,11 @@ import {
 import loginLogoImage from "../public/loginLogo.png"
 
 const menuItems = [
-  { icon: BarChart2, label: "Analytics", href: "/analytics" },
+  // { icon: BarChart2, label: "Analytics", href: "/analytics" },
+  { icon: ShoppingCart, label: "Shop Order", href: "/shop-order" },
   { icon: Users, label: "Customers", href: "/customers" },
   { icon: Ticket, label: "Coupons", href: "/coupons" },
-  { icon: ShoppingCart, label: "Shop Order", href: "/shop-order" },
+ 
 ]
 
 export function AppSidebar() {

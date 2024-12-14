@@ -116,7 +116,7 @@ const handleAvatarUpload = async (event: React.ChangeEvent<HTMLInputElement>) =>
             <Form {...generalForm}>
               <form onSubmit={generalForm.handleSubmit(onGeneralSubmit)} className="space-y-6">
                 <div>
-                  <p className="text-sm  text-[#0E121B] font-semibold mb-2"  >Upload Avatar</p>
+                  <p className="text-sm  text-[#0E121B] font-semibold mb-2">Upload Avatar</p>
                   <p className="text-sm text-[#0E121B] font-normal mb-4">
                     Min 400x400px, PNG or JPEG
                   </p>

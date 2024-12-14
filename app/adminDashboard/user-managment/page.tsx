@@ -2,7 +2,7 @@
 "use client"
 import { UserManagement } from "@/components/user-management"
 
-export default function login() {
+export default function Page() {
   return (
    <UserManagement />
   )

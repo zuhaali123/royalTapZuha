@@ -1,130 +1,3 @@
-// "use client"
-
-// import { useState } from "react"
-// import { Button } from "@/components/ui/button"
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogDescription,
-// } from "@/components/ui/dialog"
-// import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select"
-
-// interface InviteModalProps {
-//   open: boolean
-//   onOpenChange: (open: boolean) => void
-// }
-
-// export function InviteModal({ open, onOpenChange }: InviteModalProps) {
-//   const [formData, setFormData] = useState({
-//     firstName: "",
-//     lastName: "",
-//     email: "",
-//     role: "",
-//     accessLevel: "",
-//   })
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault()
-//     // Handle form submission here
-//     onOpenChange(false)
-//   }
-
-//   return (
-//     <Dialog open={open} onOpenChange={onOpenChange}>
-//       <DialogContent className="sm:max-w-[425px]">
-//         <DialogHeader>
-//           <DialogTitle className="text-[18px] font-medium text-[#0E121B]">Invite a New User</DialogTitle>
-//           <DialogDescription className="text-[#525866]">
-//             #subtitle here
-//           </DialogDescription>
-//         </DialogHeader>
-//         <form onSubmit={handleSubmit} className="space-y-4">
-//           <div className="space-y-2">
-//             <Label htmlFor="firstName">First Name</Label>
-//             <Input
-//               id="firstName"
-//               placeholder="John"
-//               value={formData.firstName}
-//               onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-//               required
-//             />
-//           </div>
-//           <div className="space-y-2">
-//             <Label htmlFor="lastName">Last Name</Label>
-//             <Input
-//               id="lastName"
-//               placeholder="Doe"
-//               value={formData.lastName}
-//               onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-//               required
-//             />
-//           </div>
-//           <div className="space-y-2">
-//             <Label htmlFor="email">Email</Label>
-//             <Input
-//               id="email"
-//               type="email"
-//               placeholder="john.doe@example.com"
-//               value={formData.email}
-//               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-//               required
-//             />
-//           </div>
-//           <div className="space-y-2">
-//             <Label htmlFor="role">Role</Label>
-//             <Select
-//               value={formData.role}
-//               onValueChange={(value) => setFormData({ ...formData, role: value })}
-//             >
-//               <SelectTrigger>
-//                 <SelectValue placeholder="Select a role" />
-//               </SelectTrigger>
-//               <SelectContent>
-//                 <SelectItem value="super-admin">Super Admin</SelectItem>
-//                 <SelectItem value="admin">Admin</SelectItem>
-//                 <SelectItem value="manager">Manager</SelectItem>
-//               </SelectContent>
-//             </Select>
-//           </div>
-//           <div className="space-y-2">
-//             <Label htmlFor="accessLevel">Access Level</Label>
-//             <Select
-//               value={formData.accessLevel}
-//               onValueChange={(value) => setFormData({ ...formData, accessLevel: value })}
-//             >
-//               <SelectTrigger>
-//                 <SelectValue placeholder="Select access level" />
-//               </SelectTrigger>
-//               <SelectContent>
-//                 <SelectItem value="full">Full Access</SelectItem>
-//                 <SelectItem value="admin">Admin Access</SelectItem>
-//                 <SelectItem value="limited">Limited Access</SelectItem>
-//               </SelectContent>
-//             </Select>
-//           </div>
-//           <div className="flex justify-end space-x-2 pt-4">
-//             <Button variant="outline" onClick={() => onOpenChange(false)}>
-//               Cancel
-//             </Button>
-//             <Button type="submit" className="bg-[#EDC433] hover:bg-[#d5ac1b] text-black">
-//               Save
-//             </Button>
-//           </div>
-//         </form>
-//       </DialogContent>
-//     </Dialog>
-//   )
-// }
 
 "use client";
 
@@ -185,7 +58,7 @@ interface InviteModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export function InviteMemberDialog({ open, onOpenChange }: InviteModalProps) {
+export function InviteMemberModal({ open, onOpenChange }: InviteModalProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -197,21 +70,25 @@ export function InviteMemberDialog({ open, onOpenChange }: InviteModalProps) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // TODO: Implement the invite logic
     console.log(values);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Close the modal after successful form submission
+    onOpenChange(false);
   }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild></DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-w-[425px]">
         <DialogHeader className="flex flex-row items-start space-x-4 pb-4">
           <div className="h-12 w-12 rounded-full bg-gray-100 p-2 flex items-center justify-center">
             <UserPlus className="h-6 w-6 text-gray-600" />
           </div>
           <div>
-            <DialogTitle className="text-[18px] font-medium text-[#0E121B]">
+            <DialogTitle className="text-[18px] font-semibold text-[#0E121B]">
               Invite a New User
             </DialogTitle>
             <DialogDescription className="text-[#525866]">
@@ -325,7 +202,7 @@ export function InviteMemberDialog({ open, onOpenChange }: InviteModalProps) {
             <DialogFooter>
               <Button
                 type="submit"
-                className=" w-full bg-[#EDC433] hover:bg-[#d5ac1b] text-black"
+                className=" w-full bg-[#EDC433] hover:bg-[#d5ac1b] text-black"  
               >
                 Save
               </Button>

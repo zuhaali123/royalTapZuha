@@ -33,141 +33,14 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useState, useCallback } from "react";
 import { ChevronUp, ChevronDown, ArrowUpDown,Trash2 } from "lucide-react";
-import { InviteMemberDialog } from "./modals/invite-member-modal";
+import { InviteMemberModal } from "./modals/invite-member-modal";
 import { ActivityLogDialog } from "./modals/activity-log-dialog";
 import { Separator } from "@/components/ui/separator"
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: "Super Admin" | "Admin" | "Manager";
-  accessLevel: string;
-  details?: string;
-  joinDate: string;
-  avatar: string;
-  background: string;
-}
-
+import {users } from '../utils/constants'
+import type { User } from "../utils/constants";
+import { getAvatarBackground } from "@/utils/helpers";
 type SortDirection = "asc" | "desc";
 type SortColumn = keyof User | null;
-
-const users: User[] = [
-  {
-    id: "1",
-    name: "Roy Sharaliy",
-    email: "roy@sharaliy.com",
-    role: "Super Admin",
-    accessLevel: "Full Access",
-    details: "#details",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person1.png",
-    background: "blue",
-  },
-  {
-    id: "2",
-    name: "Afi Noor",
-    email: "afi@royaltap.shop",
-    role: "Super Admin",
-    accessLevel: "Full Access",
-    details: "#details",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person3.png",
-    background: "red",
-  },
-  {
-    id: "3",
-    name: "Tehila",
-    email: "tehila@royal.marketing",
-    role: "Admin",
-    accessLevel: "Admin Access",
-    details: "(Left menu)",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person1.png",
-    background: "gray",
-  },
-  {
-    id: "4",
-    name: "Roy Sharaliy",
-    email: "roy@sharaliy.com",
-    role: "Super Admin",
-    accessLevel: "Full Access",
-    details: "#details",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person4.png",
-    background: "green",
-  },
-  {
-    id: "5",
-    name: "Afi Noor",
-    email: "afi@royaltap.shop",
-    role: "Super Admin",
-    accessLevel: "Full Access",
-    details: "#details",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person2.png",
-    background: "blue",
-  },
-  {
-    id: "6",
-    name: "Tehila",
-    email: "tehila@royal.marketing",
-    role: "Admin",
-    accessLevel: "Admin Access",
-    details: "(Left menu)",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person3.png",
-    background: "purple",
-  },
-  {
-    id: "7",
-    name: "Roy Sharaliy",
-    email: "roy@sharaliy.com",
-    role: "Super Admin",
-    accessLevel: "Full Access",
-    details: "#details",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person4.png",
-    background: "pink",
-  },
-  {
-    id: "8",
-    name: "Afi Noor",
-    email: "afi@royaltap.shop",
-    role: "Super Admin",
-    accessLevel: "Full Access",
-    details: "#details",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person1.png",
-    background: "orange",
-  },
-  {
-    id: "9",
-    name: "Tehila",
-    email: "tehila@royal.marketing",
-    role: "Admin",
-    accessLevel: "Admin Access",
-    details: "(Left menu)",
-    joinDate: "Since Nov, 2024",
-    avatar: "/images/person2.png",
-    background: "yellow",
-  },
-  // Add more users as needed
-];
-
-function getAvatarBackground(color: string) {
-  const colorMap: Record<string, string> = {
-    blue: "bg-blue-500",
-    red: "bg-red-500",
-    gray: "bg-gray-500",
-    green: "bg-green-500",
-    purple: "bg-purple-500",
-    pink: "bg-pink-500",
-    orange: "bg-orange-500",
-    yellow: "bg-yellow-500",
-  };
-
-  return colorMap[color] || "bg-gray-200"; // Default to gray if the color is not found
-}
 
 const roleColor = {
   "Super Admin": "bg-green-500",
@@ -475,7 +348,7 @@ const handleSelectAll = () => {
         </Pagination>
         <div className="text-sm text-muted-foreground">7 / page</div>
       </div>
-      <InviteMemberDialog open={isModalOpen} onOpenChange={setIsModalOpen} />
+      <InviteMemberModal open={isModalOpen} onOpenChange={setIsModalOpen} />
       <ActivityLogDialog open={isActivityModalOpen} onOpenChange={setIsActivityModalOpen} />
       
 
